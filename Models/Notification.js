@@ -6,7 +6,9 @@ let schema = new Schema({
     notifications: [
         new Schema({
             date: Date,
-            // Add the other attributes here
+            title: String,
+            Message: String,
+            Seen: String
         })
     ]
 });
