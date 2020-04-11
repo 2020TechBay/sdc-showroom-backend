@@ -1,17 +1,9 @@
-const {Schema, model,SchemaTypes} = require('mongoose')
-
-
+const { Schema, model, SchemaTypes } = require('mongoose');
 
 const productRequest = new Schema({
-
-    userID: SchemaTypes.ObjectId,
-
-        product:[new Schema({
-        productID: String,
-        extraInfo: String,
-        response: String
-    })]
+    customerID: SchemaTypes.ObjectId,
+    productID: SchemaTypes.ObjectId,
+    response: String
 })
 
-
-module.exports = model('ProductRequests', productRequest)
+module.exports = model('ProductRequest', productRequest, 'product_requests');

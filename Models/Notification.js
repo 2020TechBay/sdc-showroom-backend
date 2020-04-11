@@ -7,8 +7,8 @@ let schema = new Schema({
         new Schema({
             date: Date,
             title: String,
-            Message: String,
-            Seen: String
+            message: String,
+            seen: Boolean
         })
     ]
 });

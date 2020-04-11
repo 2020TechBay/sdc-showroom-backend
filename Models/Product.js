@@ -1,15 +1,9 @@
-const {Schema, model}= require('mongoose')
-
-
+const { Schema, model } = require('mongoose');
 
 const product = new Schema({
-    id: {
-        type: String,
-        required: true
-    },
-    type: String,
+    type: { type: String, enum: ['Asset', 'Liability'] },
     name: String,
-    description :String
-})
+    description: String
+});
 
-module.exports = model('Products', product)
+module.exports = model('Product', product, 'products')
