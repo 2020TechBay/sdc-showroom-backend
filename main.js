@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(require('./router'));
 
 // Connect to database and start listening for requests
 const mongoose = require('mongoose');
