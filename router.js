@@ -6,24 +6,11 @@ const router = new Router();
 router.get('/', (req, res) => {
     res.send("Hello World!");
 });
-// You can run the project and open http://localhost:2020 in your browser to see it in action :)
-
-/*  
-    Now define the following routes:
-    GET  /products
-    GET  /login
-    POST /signup
-    POST /request
-    GET  /notifications
-    GET  /customer
-    GET  /requests
-    GET  /reports
-*/
 
 
 
 router.get('/products', (req, res) => {
-
+    res.send()
 })
 
 router.get('/login', (req, res) => {
