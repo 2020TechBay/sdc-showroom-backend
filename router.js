@@ -50,10 +50,6 @@ router.get('/notifications', (req, res) => {
     
 })
 
-router.get('/products', (req, res) => {
-    
-})
-
 
 
 router.post('/customer', (req, res) => {
