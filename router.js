@@ -21,4 +21,60 @@ router.get('/', (req, res) => {
 */
 
 
+
+router.get('/products', (req, res) => {
+
+})
+
+router.get('/login', (req, res) => {
+    
+})
+
+
+router.post('/signup', (req, res) => {
+    
+})
+
+
+router.post('/request', (req, res) => {
+    
+})
+
+
+router.get('/requests', (req, res) => {
+    
+})
+
+
+router.get('/notifications', (req, res) => {
+    
+})
+
+router.get('/products', (req, res) => {
+    
+})
+
+
+
+router.post('/customer', (req, res) => {
+    
+})
+
+
+router.get('/reports', (req, res) => {
+    
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
 module.exports = router;
