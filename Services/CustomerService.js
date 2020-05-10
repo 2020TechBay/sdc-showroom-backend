@@ -1,9 +1,11 @@
 const Products = require('../Models/Product');
-const ProductRequest = require('../Models/ProductRequest');
+const ProductRequests = require('../Models/ProductRequest');
+const Officers = require('../Models/Officer');
+const EmailService = require('./EmailService');
 
 // Get all the product requests made by the specified customer
 function getRequests(customer) {
-    return ProductRequest.aggregate([
+    return ProductRequests.aggregate([
         {
             $match: {
                 customerID: customer._id
@@ -35,12 +37,35 @@ function getRequests(customer) {
 async function makeRequest(customer, productID) {
     let product = await Products.findById(productID);
     if (product) {
-        let pr = new ProductRequest({
+        await ProductRequests.create({
             date: new Date(),
             customerID: customer._id,
             productID: product._id
         });
-        await pr.save();
+
+        // Send an email notification to the appropriate officers
+        Officers.aggregate([
+            {
+                $match: {
+                    role: (product.type == "Asset" ? "APM" : "LPM")
+                }
+            },
+            {
+                $group: {
+                    _id: null,
+                    emails: { $push: "$email" }
+                }
+            }
+        ]).then(async (result) => {
+            if (result.length > 0) {
+                let message = "Hello SDC Officer,<br><br>";
+                message += `A customer just made a request for the <b>${product.name}</b> product. Please check and respond accordingly.<br><br>`;
+                message += `Customer Name: <b>${customer.name}</b><br>`;
+                message += `Customer Email: <b>${customer.email}</b>`;
+                await EmailService.sendEmail(result[0].emails.join(','), "SDC SHOWROOM - New Product Request", message, true);
+            }
+        });
+
         return true;
     }
     return false;
