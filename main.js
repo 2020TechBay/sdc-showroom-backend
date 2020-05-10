@@ -17,14 +17,13 @@ mongoose.connect(
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-        useCreateIndex: true
+        useCreateIndex: true,
+        useFindAndModify: false
     },
     (err) => {
-        if (!err)
-            app.listen(process.env.PORT || 2020, () => console.log("Application is live."));
-        else {
-            console.error("An error occurred while attempting to establish a connection to the database.");
+        if (err)
             console.error(err);
-        }
+        else
+            app.listen(process.env.PORT || 2020, () => console.log("Application is live."));
     }
 );

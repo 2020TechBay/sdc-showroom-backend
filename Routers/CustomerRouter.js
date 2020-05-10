@@ -27,7 +27,7 @@ router.get('/request', async (req, res, next) => {
 router.post('/request', async (req, res, next) => {
     try {
         let { productID } = req.body;
-        if (isValidObjectId(productID)) {
+        if (productID && isValidObjectId(productID)) {
             let success = await CustomerService.makeRequest(req.user, productID);
             if (success) {
                 res.status(200).send({ status: 'success' });
