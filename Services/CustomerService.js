@@ -39,6 +39,7 @@ async function makeRequest(customer, productID) {
     if (product) {
         await ProductRequests.create({
             date: new Date(),
+            type: product.type + 'Request',
             customerID: customer._id,
             productID: product._id
         });
