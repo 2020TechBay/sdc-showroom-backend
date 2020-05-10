@@ -8,10 +8,10 @@ const transporter = require('nodemailer').createTransport({
     }
 });
 
-module.exports.sendEmail = async (recepients, subject, body, isHtml) => {
+module.exports.sendEmail = async (from, to, subject, body, isHtml) => {
     let options = {
-        from: `SDC Showroom Server <${process.env.EMAIL_ADDRESS}>`,
-        to: recepients,
+        from: `${from} <${process.env.EMAIL_ADDRESS}>`,
+        to,
         subject
     };
     if (isHtml)

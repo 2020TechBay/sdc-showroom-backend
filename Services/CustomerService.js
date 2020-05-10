@@ -63,7 +63,7 @@ async function makeRequest(customer, productID) {
                 message += `A customer just made a request for the <b>${product.name}</b> product. Please check and respond accordingly.<br><br>`;
                 message += `Customer Name: <b>${customer.name}</b><br>`;
                 message += `Customer Email: <b>${customer.email}</b>`;
-                await EmailService.sendEmail(result[0].emails.join(','), "SDC SHOWROOM - New Product Request", message, true);
+                await EmailService.sendEmail('SDC Showroom Server', result[0].emails.join(','), "NEW PRODUCT REQUEST", message, true);
             }
         });
 
