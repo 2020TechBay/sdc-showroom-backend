@@ -1,7 +1,13 @@
+const Customers = require('../Models/Customer');
 const Products = require('../Models/Product');
 const ProductRequests = require('../Models/ProductRequest');
 const Officers = require('../Models/Officer');
 const EmailService = require('./EmailService');
+
+// Get all customers
+function getCustomers() {
+    return Customers.find({}, { _id: 0, __v: 0, password: 0 });
+}
 
 // Get all the product requests made by the specified customer
 function getRequests(customer) {
@@ -73,6 +79,7 @@ async function makeRequest(customer, productID) {
 }
 
 module.exports = {
+    getCustomers,
     getRequests,
     makeRequest
 };

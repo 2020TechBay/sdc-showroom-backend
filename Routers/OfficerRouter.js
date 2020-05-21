@@ -1,5 +1,6 @@
 const { isValidObjectId } = require('mongoose');
 const OfficerService = require('../Services/OfficerService');
+const CustomerService = require('../Services/CustomerService');
 const router = require('express').Router();
 
 // Secure the routes
@@ -10,6 +11,17 @@ router.get('/', (req, res) => {
     let user = req.user.toJSON();
     delete user._id; delete user.password; // Don't include _id and password fields
     res.send(user);
+});
+
+// Get customers
+router.get('/customers', async (req, res, next) => {
+    try {
+        let results = await CustomerService.getCustomers();
+        res.send(results);
+    }
+    catch (err) {
+        next(err);
+    }
 });
 
 // Get product requests
