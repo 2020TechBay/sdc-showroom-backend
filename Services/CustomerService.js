@@ -40,9 +40,10 @@ function getRequests(customer) {
 }
 
 // Make a product request
-async function makeRequest(customer, productID) {
+async function makeRequest(customer, { productID, age, nationality, nationalID }) {
     let product = await Products.findById(productID);
     if (product) {
+        await Customers.updateOne({ _id: customer._id }, { $set: { age, nationality, nationalID } });
         await ProductRequests.create({
             date: new Date(),
             type: product.type + 'Request',
